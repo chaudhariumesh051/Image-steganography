@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Steganography</title>
+    <script defer src="script.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"
+        integrity="sha512-2r+xZ/Dm8+HI0I8dsj1Jlfchv4O3DGfWbqRalmSGtgdbVQrZyGRqHp9ek8GKk1x8w01JsmDZRrJZ4DzgXkAU+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+</head>
+
+
+
+<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] ">
+    <header class="bg-white">
+        <nav class="container flex justify-between items-center px-4 py-4">
+            <div>
+                Image Steganography
+            </div>
+            <div class="hidden md:flex items-center">
+                <a href="http://localhost:5500/Home.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">Home</a>
+                <a href="http://localhost:5500/feature.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">Features</a>
+                <a href="http://localhost:5500/About.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">About</a>
+                <a href="http://localhost:5500/Contact.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">Contact</a>
+                <a href="http://localhost:5500/feed.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">FeedBack</a>
+            </div>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button class="outline-none mobile-menu-button">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <body class="font-sans">
+
+        <div class="container mx-auto py-8">
+            <section class="text-center">
+                <h2 class="text-2xl font-bold mb-8">Features of Image Steganography</h2>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <div class="feature bg-white p-4 rounded-lg shadow-md w-72">
+                        <img src="ab.jpg" alt="Encryption">
+                        <h3 class="text-lg font-bold mt-4">Encryption</h3>
+                        <p class="text-gray-700">Encrypt messages using strong algorithms.</p>
+                    </div>
+                    <div class="feature bg-white p-4 rounded-lg shadow-md w-72">
+                        <img src="bc.jpg" alt="Decryption">
+                        <h3 class="text-lg font-bold mt-4">Decryption</h3>
+                        <p class="text-gray-700">Decrypt hidden messages from images.</p>
+                    </div>
+                    <div class="feature bg-white p-4 rounded-lg shadow-md w-72">
+                        <img src="img.jpg" alt="Embedding">
+                        <h3 class="text-lg font-bold mt-4">Embedding</h3>
+                        <p class="text-gray-700">Embed secret messages within images.</p>
+                    </div>
+                    <div class="feature bg-white p-4 rounded-lg shadow-md w-72">
+                        <img src="5.jpg" alt="Extraction">
+                        <h3 class="text-lg font-bold mt-4">Extraction</h3>
+                        <p class="text-gray-700">Extract hidden messages from steganographic images.</p>
+                    </div>
+                    <div class="feature bg-white p-4 rounded-lg shadow-md w-72">
+                        <img src="6.jpeg" alt="Security">
+                        <h3 class="text-lg font-bold mt-4">Security</h3>
+                        <p class="text-gray-700">Ensure secure and reliable steganographic techniques.</p>
+                    </div>
+                    <div class="feature bg-white p-4 rounded-lg shadow-md w-72">
+                        <img src="8.jpeg" alt="Sharing">
+                        <h3 class="text-lg font-bold mt-4">Sharing</h3>
+                        <p class="text-gray-700">Share steganographic images safely with others.</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </body>
+
+</html>

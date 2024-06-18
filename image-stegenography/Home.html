@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Image Steganography</title>
+    <script defer src="script.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.0/p5.js"
+        integrity="sha512-2r+xZ/Dm8+HI0I8dsj1Jlfchv4O3DGfWbqRalmSGtgdbVQrZyGRqHp9ek8GKk1x8w01JsmDZRrJZ4DzgXkAU+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+</head>
+
+
+
+<body class="font-[Poppins] bg-gradient-to-t from-[#fbc2eb] to-[#a6c1ee] ">
+    <header class="bg-white">
+        <nav class="container flex justify-between items-center px-4 py-4">
+            <div>
+                Image Steganography
+            </div>
+            <div class="hidden md:flex items-center">
+                <a href="http://localhost:5500/Home.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">Home</a>
+                <a href="http://localhost:5500/feature.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">Features</a>
+                <a href="http://localhost:5500/About.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">About</a>
+                <a href="http://localhost:5500/Contact.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">Contact</a>
+                <a href="http://localhost:5500/feed.html"
+                    class="px-3 text-lg hover:text-red-600 transition duration-500">FeedBack</a>
+            </div>
+            </div>
+            <div class="md:hidden flex items-center">
+                <button class="outline-none mobile-menu-button">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+
+
+
+
+    <div class="container my-8">
+        <div class="grid grid-cols-12 gap-8">
+            <div class="bg-white shadow-md rounded-lg col-span-12 p-6">
+
+                <form id="steg-form" action="/encode" method="POST" enctype="multipart/form-data">
+                    <div class="mb-6" hidden>
+                        <h2 class="text-2xl font-bold mb-2">Encode</h2>
+                    </div>
+
+                    <div class="grid grid-cols-12 gap-4" id="myTabContent">
+                        <div class="col-span-7" class="tab-pane fade show active" id="home-tab-pane" role="tabpanel"
+                            aria-labelledby="home-tab" tabindex="0">
+                            <h2 class="text-xl font-semibold mb-4">Encode Image</h2>
+                            <div class="block mb-2">
+                                <label for="input-image" class="block mb-2 text-sm font-bold">Choose an image</label>
+                                <input type="file" class="form-control" id="encodeimage1" accept="image/*"
+                                    onchange="previewFile(event)" required>
+                            </div>
+
+                            <div class="block mb-2">
+                                <label for="secretText" class="block mb-2 text-sm font-bold">Enter your message</label>
+                                <textarea name="message" id="secretText" rows="4"
+                                    class="block w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500"
+                                    required></textarea>
+
+                            </div>
+                            <div id="canvasbox"></div>
+
+                            <div class="block">
+                                <button id="encodebtn" data-bs-toggle="tab" data-bs-target="#home-tab-pane"
+                                    type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"
+                                    class="mt-4 block w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-red-500 focus:border-red-500">Encode</button>
+                            </div>
+                        </div>
+
+
+                        <div class="col-span-5">
+                            <h2 class="text-xl font-semibold mb-4">Preview</h2>
+                            <div class="preview">
+                                <img id="preview" src="" alt="Preview" class="w-full h-full object-cover">
+                            </div>
+                        </div>
+
+
+                    </div>
+            </div>
+            </form>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <div class="bg-white shadow-md rounded-lg col-span-12 p-6">
+
+            <form id="decode-form" action="/decode" method="POST" enctype="multipart/form-data">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold mb-2">Decode</h2>
+                </div>
+
+
+                <div class="grid grid-cols-12 gap-4" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab"
+                    tabindex="0">
+                    <div class="col-span-7">
+
+                        <h2 class="text-xl font-semibold mb-4">Choose an image</h2>
+                        <div class="block mb-2">
+
+                            <label for="decodeimage1" class="block mb-2 text-sm font-bold">Choose Original an
+                                image</label>
+                            <input type="file" class="form-control" id="decodeimage1" accept="image/*" required>
+
+                            <label for="decodeimage2" class="block mb-2 text-sm font-bold">Choose Encoded an
+                                image</label>
+                            <input type="file" class="form-control" id="decodeimage2" accept="image/*" required>
+
+                        </div>
+
+
+                        <div class="block">
+                            <button id="decodebtn" type="button" data-bs-toggle="tab" data-bs-target="#profile-tab-pane"
+                                type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"
+                                class="mt-4 block w-full bg-red-600 text-white py-2 rounded-md hover:bg-red-700 focus:outline-none focus:ring-red-500 focus:border-red-500"
+                                id="decodebtn">Decode</button>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-span-5">
+                        <h2 class="text-xl font-semibold mb-4">Decoded Message</h2>
+                        <div class="decoded-message">
+
+                            <textarea id="secretText1" rows="4" name="message"
+                                class="block w-full border border-gray-300 p-2 rounded-md focus:outline-none focus:ring-red-500 focus:border-red-500"
+                                ></textarea>
+                            <p id="message-warning" class="text-red-500 mt-2"></p>
+
+                        </div>
+                        <div id="canvasbox"></div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    </div>
+
+    <footer class="">
+        <div class="container mx-auto px-4 py-4">
+            <div class="text-center">
+                <p class="text-xl">Copyright 2024 &copy; All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
+
+<script>
+    const mobileMenuButton = document.querySelector('.mobile-menu-button');
+    const mobileMenu = document.querySelector('.mobile-menu');
+
+    mobileMenuButton.addEventListener('click', () => {
+        mobileMenu.classList.toggle('hidden');
+    });
+
+    function previewFile(event) {
+        const input = event.target;
+        const preview = document.querySelector('#preview');
+
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+
+            reader.onload = function (event) {
+                preview.src = event.target.result;
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+</script>
+
+</html>
